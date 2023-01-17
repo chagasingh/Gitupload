@@ -22,3 +22,13 @@ var header = document.getElementById('main-header');
 header.style.borderBottom='solid 10px orange'
 var maintitle=document.getElementById('main');
 maintitle.style.color='blue'
+
+var items = document.getElementsByClassName('list-group-item');
+console.log(items);
+items[0].style.fontWeight='Bold';
+items[1].style.fontWeight='Bold';
+items[2].style.fontWeight='Bold';
+items[3].style.fontWeight='Bold';
+
+
+items[2].style.backgroundColor='yellow';

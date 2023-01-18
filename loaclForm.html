@@ -43,10 +43,22 @@
         const phoneno=event.target.phoneno.value;
         const dob=event.target.timedate.value;
 
-        localStorage.setItem('name',name);
-        localStorage.setItem('email',email);
-        localStorage.setItem('phoneno',phoneno);
-        localStorage.setItem('dob',dob);
+        // localStorage.setItem('name',name);
+        // localStorage.setItem('email',email);
+        // localStorage.setItem('phoneno',phoneno);
+        // localStorage.setItem('dob',dob);
+
+        let myObj={
+            name:name,
+            email:email,
+            phoneno:phoneno,
+            dob:dob
+        }
+        myObjnew=JSON.stringify(myObj);
+        localStorage.setItem('myObj',myObjnew);
+
+
+
     }
 
 </script>

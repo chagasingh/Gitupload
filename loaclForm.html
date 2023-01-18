@@ -33,6 +33,7 @@
         <button type="submit" class="btn btn-danger btn-lg">submit</button>
         <br><br><hr><br>
     </form>
+    <ul id="listOfItems"></ul>
 
 <script>
     function saveToLocalStorage(event){
@@ -55,12 +56,15 @@
             dob:dob
         }
         myObjnew=JSON.stringify(myObj);
-        localStorage.setItem('myObj',myObjnew);
-
-
-
+        localStorage.setItem(email,myObjnew);
+        showUserOnScreen(myObj)
     }
-
+        function showUserOnScreen(myObj){
+            const parentEle=document.getElementById('listOfItems')
+            const childEle =document.createElement('li')
+            childEle.textContent=myObj.name+'--'+myObj.email+'--'+myObj.phoneno+'--'+myObj.dob
+            parentEle.appendChild(childEle)
+        }
 </script>
 
 </body>

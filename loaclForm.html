@@ -34,6 +34,7 @@
         <br><br><hr><br>
     </form>
     <ul id="listOfItems"></ul>
+    
 
 <script>
     function saveToLocalStorage(event){
@@ -63,7 +64,16 @@
             const parentEle=document.getElementById('listOfItems')
             const childEle =document.createElement('li')
             childEle.textContent=myObj.name+'--'+myObj.email+'--'+myObj.phoneno+'--'+myObj.dob
-            parentEle.appendChild(childEle)
+
+            const deleteBtn =document.createElement('input')
+            deleteBtn.type='button'
+            deleteBtn.value='delete'
+            deleteBtn.onclick=() => {
+                localStorage.removeItem(myObj.email)
+                parentEle.removeChild(childEle)
+            }
+            childEle.appendChild(deleteBtn)
+            parentEle.appendChild(childEle) 
         }
 </script>
 

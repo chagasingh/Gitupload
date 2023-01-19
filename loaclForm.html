@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <title>GET A CALL</title>
+</head>
+
+<body style="text-align:center" ;>
+    <form style="background-color:rgb(255, 192, 3);"  onsubmit="saveToLocalStorage(event)">
+        <h1 style="color:rgb(255, 255, 255);">BOOK A CALL NOW</h1>
+        <p>you can accept a call back in a few days</p>
+        <hr>
+        <div class="mb-3">
+            <label for="fname" class="form-label">FIRST Name:</label>
+            <input type="text" class="form-control" id="fname" name="fname" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">ENTER YOUR Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="phoneno" class="form-label">PHONE NUMBER:</label>
+            <input type="text" class="form-control" id="phoneno" name="phoneno">
+        </div>
+        <div class="mb-3">
+            <label for="timedate">Birthday (date and time):</label><br>
+            <input type="datetime-local" id="timedate" name="timedate">
+        </div>
+        <button type="submit" class="btn btn-danger btn-lg">submit</button>
+        <br><br><hr><br>
+    </form>
+    <ul id="listOfItems"></ul>
+    
+
+<script>
+    function saveToLocalStorage(event){
+
+        event.preventDefault();
+        const name=event.target.fname.value;
+        const email=event.target.email.value;
+        const phoneno=event.target.phoneno.value;
+        const dob=event.target.timedate.value;
+
+        // localStorage.setItem('name',name);
+        // localStorage.setItem('email',email);
+        // localStorage.setItem('phoneno',phoneno);
+        // localStorage.setItem('dob',dob);
+
+        let myObj={
+            name:name,
+            email:email,
+            phoneno:phoneno,
+            dob:dob
+        }
+        myObjnew=JSON.stringify(myObj);
+        localStorage.setItem(email,myObjnew);
+        showUserOnScreen(myObj)
+    }
+        function showUserOnScreen(myObj){
+            const parentEle=document.getElementById('listOfItems')
+            const childEle =document.createElement('li')
+            childEle.textContent=myObj.name+'--'+myObj.email+'--'+myObj.phoneno+'--'+myObj.dob
+
+            const deleteBtn =document.createElement('input')
+            deleteBtn.type='button'
+            deleteBtn.value='delete'
+            deleteBtn.onclick=() => {
+                localStorage.removeItem(myObj.email)
+                parentEle.removeChild(childEle)
+            }
+
+            const editBtn =document.createElement('input')
+            editBtn.type='button'
+            editBtn.value='Edit'
+            editBtn.onclick=() => {
+                localStorage.removeItem(myObj.email)
+                parentEle.removeChild(childEle)
+
+                document.getElementById('fname').value=myObj.name
+                document.getElementById('exampleInputEmail1').value=myObj.email
+                document.getElementById('phoneno').value=myObj.phoneno
+                document.getElementById('timedate').value=myObj.dob
+
+            }
+            childEle.appendChild(editBtn)
+            childEle.appendChild(deleteBtn)
+            parentEle.appendChild(childEle) 
+        }
+</script>
+
+</body>
+
+</html>

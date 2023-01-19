@@ -72,6 +72,21 @@
                 localStorage.removeItem(myObj.email)
                 parentEle.removeChild(childEle)
             }
+
+            const editBtn =document.createElement('input')
+            editBtn.type='button'
+            editBtn.value='Edit'
+            editBtn.onclick=() => {
+                localStorage.removeItem(myObj.email)
+                parentEle.removeChild(childEle)
+
+                document.getElementById('fname').value=myObj.name
+                document.getElementById('exampleInputEmail1').value=myObj.email
+                document.getElementById('phoneno').value=myObj.phoneno
+                document.getElementById('timedate').value=myObj.dob
+
+            }
+            childEle.appendChild(editBtn)
             childEle.appendChild(deleteBtn)
             parentEle.appendChild(childEle) 
         }
